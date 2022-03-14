@@ -1,0 +1,33 @@
+<div *ngFor="let widget of widgets; let index = index">
+    <mat-card *ngIf="widget.name === 'currency'" class="example-card" cdkDragBoundary=".example-boundary" cdkDrag>
+        <mat-card-header >
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>Currency</mat-card-title>
+          </mat-card-header>
+          <img  mat-card-image src="../../../assets/photo-1580519542036-c47de6196ba5.jpeg" alt="Photo">
+          <mat-card-content *ngIf="currency[index]"  class="text-deco">
+                  <p>{{currency[index].value}}</p>
+          </mat-card-content>
+          <mat-card-actions>
+            <form [formGroup]="form[index]">
+                <mat-form-field class="example-form"  appearance="fill">
+                    <input matInput type="text" matInput placeholder="symb" formControlName="sym1" required />
+                </mat-form-field>
+                <mat-form-field class="example-form"  appearance="fill">
+                    <input matInput type="text" matInput placeholder="symb"
+                    formControlName="sym2" required />
+                </mat-form-field>
+                <mat-form-field class="example-form"  appearance="fill">
+                    <input matInput type="text" matInput placeholder="Insert value"
+                        formControlName="value" required />
+                </mat-form-field>
+
+                <button class="mat-button" mat-button color="primary" (click)="sendCurrency(index)"
+                [disabled]="!form[index].valid">Currency</button>
+            </form>
+            <button mat-icon-button (click)="deleteWidget(index)">
+                <mat-icon> delete </mat-icon>
+            </button>
+          </mat-card-actions>
+    </mat-card>
+</div>

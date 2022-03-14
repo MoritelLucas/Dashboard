@@ -1,0 +1,76 @@
+<div class=cdk-global-scrollblock>
+<mat-toolbar class="example-header">
+      <h1>Dashboard</h1>
+      <mat-icon> dashboard </mat-icon>
+
+      <button mat-icon-button  class="exit-btn" [matMenuTriggerFor]="menu">
+          <mat-icon> person_pin </mat-icon>
+      </button>
+        <mat-menu #menu="matMenu">
+          <mat-card class="example-card" *ngIf="user != undefined">
+            <mat-card-header>
+              <img mat-card-avatar class="card-img" rounded-circle [src]="user.picture" alt="user">
+                <mat-card-title>{{user.name}}</mat-card-title>
+                <mat-card-subtitle>{{user.email}}</mat-card-subtitle>
+                <mat-card-subtitle>{{user.locale}}</mat-card-subtitle>
+            </mat-card-header>
+          </mat-card>
+        </mat-menu>
+
+      <button mat-icon-button class="exit-btn" [routerLink]="['../login']">
+        <mat-icon> exit_to_app </mat-icon>
+      </button>
+
+    </mat-toolbar>
+    <mat-sidenav-container class="example-container">
+      <mat-sidenav mode="side" opened class="example-sidenav">
+        <mat-tree class="btn-tree" [dataSource]="dataSource" [treeControl]="treeControl">
+          <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+            <button mat-icon-button (click)="newWidget(node.item)">
+               <mat-icon class="text-color"> add </mat-icon>
+            </button>
+            <span  class="text-color">{{node.item}}</span>
+          </mat-tree-node>
+          <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
+            <button mat-icon-button
+                    [attr.aria-label]="'Toggle ' + node.item" matTreeNodeToggle>
+              <mat-icon [ngStyle]="{'color':'#27D5B0'}" class="mat-icon-rtl-mirror">
+                {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+              </mat-icon>
+            </button><span  class="text-color">
+            {{node.item}}
+            </span>
+          </mat-tree-node>
+        </mat-tree>
+      </mat-sidenav>
+
+      <mat-sidenav-content [style.background-color]="'#171717'">
+        <mat-tab-group mat-stretch-tabs mat-align-tabs="center">
+          <mat-tab  label="City" >
+            <app-weather-widgets  [widgets]="widgets"></app-weather-widgets>
+            <app-location-widgets [widgets]="widgets"></app-location-widgets>
+            <app-time-widgets [widgets]="widgets"></app-time-widgets>
+          </mat-tab>
+          <mat-tab label="Youtube" *ngIf="user != undefined">
+            <app-youtube-widget [widgets]="widgets"></app-youtube-widget>
+            <app-youtube-search-widget [widgets]="widgets"></app-youtube-search-widget>
+          </mat-tab>
+          <mat-tab label="Currency">
+            <app-currency-widget [widgets]="widgets"></app-currency-widget>
+          </mat-tab>
+          <mat-tab label="Reddit" *ngIf="user != undefined">
+        <app-search-widget [widgets]="widgets"></app-search-widget>
+        <app-posts-widget [widgets]="widgets"></app-posts-widget>
+        <app-mysub-widget [widgets]="widgets"></app-mysub-widget>
+          </mat-tab>
+        <mat-tab label="Riot" *ngIf="user != undefined">
+            <app-riotsum-widget [widgets]="widgets"></app-riotsum-widget>
+            <app-riotmatch-widget [widgets]="widgets"></app-riotmatch-widget>
+          </mat-tab>
+        <mat-tab label="Nasa" *ngIf="user != undefined">
+            <app-nasa-widget [widgets]="widgets"></app-nasa-widget>
+          </mat-tab>
+        </mat-tab-group>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>

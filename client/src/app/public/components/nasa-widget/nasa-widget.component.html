@@ -1,0 +1,30 @@
+<div *ngFor="let widget of widgets; let index = index">
+    <mat-card *ngIf="widget.name === 'Curiosity'" class="example-card" cdkDragBoundary=".example-boundary" cdkDrag>
+        <mat-card-header class="example-header-image" >
+            <mat-card-title>Curiosity</mat-card-title>
+          </mat-card-header>
+          <img *ngIf="nasa[index] != undefined"  mat-card-image [src]="nasa[index].img_src" alt="Photo">
+          <mat-card-content *ngIf="nasa[index] != undefined"  class="text-deco">
+              <strong>
+                <p>Earth date: {{nasa[index].earth_date}}</p>
+              </strong>
+          </mat-card-content>
+          <mat-card-actions>
+            <form [formGroup]="form[index]">
+                <mat-form-field class="example-form"  appearance="fill">
+                    <input matInput type="text" matInput placeholder="sol between 0 and 1000"
+                        formControlName="sol" required />
+                </mat-form-field>
+                <mat-form-field class="example-form"  appearance="fill">
+                    <input matInput type="text" matInput placeholder="fhaz/rahz/navcam"
+                        formControlName="cam" required />
+                </mat-form-field>
+                <button class="mat-button" mat-button color="primary" (click)="sendnasa(index)"
+                [disabled]="!form[index].valid">Search</button>                
+            </form>
+            <button mat-icon-button (click)="deleteWidget(index)">
+                <mat-icon> delete </mat-icon>
+            </button>
+          </mat-card-actions>
+    </mat-card>
+</div>

@@ -1,0 +1,29 @@
+<div *ngFor="let widget of widgets; let index = index">
+    <mat-card *ngIf="widget.name === 'search'" class="example-card" cdkDragBoundary=".example-boundary" cdkDrag>
+        <mat-card-header class="example-header-image" >
+            <mat-card-title>Youtube Search</mat-card-title>
+            <mat-card-subtitle *ngIf="search[index] != undefined" class="sub-text">{{search[index].kind}}</mat-card-subtitle>
+          </mat-card-header>
+        <img *ngIf="search[index] != undefined"  mat-card-image [src]="search[index].thumbnails" alt="Photo">
+          <mat-card-content *ngIf="search[index] != undefined"  class="text-deco">
+              <strong>
+                  <p>Channel: {{search[index].title}}</p>
+                  <p>Created: {{search[index].publishedAt}}</p>
+                  <p>Description: {{search[index].description}}</p>
+              </strong>
+          </mat-card-content>
+          <mat-card-actions>
+            <form [formGroup]="form[index]">
+                <mat-form-field class="example-form"  appearance="fill">
+                    <input matInput type="text" matInput placeholder="Search"
+                        formControlName="channel" required />
+                </mat-form-field>
+                <button class="mat-button" mat-button color="primary" (click)="sendSearchYT(index)"
+                [disabled]="!form[index].valid">Search</button>                
+            </form>
+            <button mat-icon-button (click)="deleteWidget(index)">
+                <mat-icon> delete </mat-icon>
+            </button>
+          </mat-card-actions>
+    </mat-card>
+</div>

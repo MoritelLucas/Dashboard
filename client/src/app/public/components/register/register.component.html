@@ -1,0 +1,37 @@
+<div [style.background-color]="'black'" class="main-wrapper">
+    <div class="center2">
+      <img  mat-card-image src="../../../assets/PikPng.com_basketball-icon-png_2423802.png" alt="Photo">
+    </div>
+    <div class="center">
+      <mat-card class="box">
+        <mat-card-header>
+          <mat-card-title>Register</mat-card-title>
+        </mat-card-header>
+        <form [formGroup]="form" (ngSubmit)="register()" class="example-form">
+            <mat-card-content>
+                    <mat-form-field class="example-full-width">
+                        <input type="email" matInput placeholder="Email" formControlName="email">
+                    <mat-error *ngIf="email.touched && email.hasError('required')">Email is required</mat-error>
+                    <mat-error *ngIf="email.touched && email.hasError('email')">Email must be valid</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width">
+                        <input type="text" matInput placeholder="Username" formControlName="name">
+                        <mat-error *ngIf="name.touched && name.hasError('required')">User is required</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width">
+                        <input type="password" matInput placeholder="Password" formControlName="password">
+                        <mat-error *ngIf="password.touched && password.hasError('required')">Password is required</mat-error>
+                        <mat-error *ngIf="password.touched && password.hasError('minlength')">Password should contain 6 characters</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width">
+                      <input type="password" matInput placeholder="Password confirmation" formControlName="passwordConfirm">
+                      <mat-error *ngIf="passwordConfirm.touched && passwordConfirm.hasError('required')">Password confirmation is required</mat-error>
+                      <mat-error *ngIf="passwordConfirm.touched && form.hasError('passwordsNotMatching')">Password must be the same</mat-error>
+                  </mat-form-field>
+          </mat-card-content>
+          <button mat-stroked-button class="btn-block"  [disabled]="!form.valid" type="submit">Register</button>
+          <button mat-stroked-button class="btn-block" [routerLink]="['../login']">SignIn</button>  
+         </form>
+      </mat-card>
+    </div>
+  </div>

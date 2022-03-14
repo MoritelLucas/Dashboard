@@ -1,0 +1,56 @@
+.main-wrapper {
+	height: 100%;
+	background-color:black;
+}
+
+
+.box {
+	opacity: 1;
+	float: left;
+	width: 100%;
+	background: #232F34;
+}
+
+.main-wrapper .example-form {
+	min-width: 100%;
+	max-width: 300px;
+}
+
+.example-full-width,
+.main-wrapper .btn-block {
+	width: 100%;
+	margin-bottom:20px;
+}
+
+.main-wrapper mat-card-header {
+	text-align: center;
+	width: 100%;
+	display: block;
+}
+
+.main-wrapper mat-card-header mat-card-title {
+	font-size: 30px;
+	margin: 0;
+  color:#fff;
+}
+
+.main-wrapper .mat-card {
+	padding: 270px 67px;
+}
+
+.main-wrapper .mat-stroked-button {
+	line-height: 54px;
+	background: #27D5B0;
+  	color: #fff;
+}
+
+.center {
+  position: absolute;
+  left: 70%;
+  top: 0%;
+}
+.center2 {
+	position: absolute;
+	left: 15%;
+	top: 10%;
+}

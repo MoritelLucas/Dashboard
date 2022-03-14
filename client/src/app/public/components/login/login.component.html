@@ -1,0 +1,29 @@
+<div class="main-wrapper">
+  <div class="center2">
+    <img  mat-card-image src="../../../assets/login.png" alt="Photo">
+  </div>
+  <div class="center">
+    <mat-card class="box">
+      <mat-card-header>
+        <mat-card-title >Sign In</mat-card-title>
+      </mat-card-header>
+  
+      <form [formGroup]="form" (ngSubmit)="login()" class="example-form">
+        <mat-card-content>
+          <mat-form-field class="example-full-width">
+            <input type="text" matInput placeholder="Username" formControlName="name">
+            <mat-error *ngIf="name.touched && name.hasError('required')">User is required</mat-error>
+        </mat-form-field>
+  
+        <mat-form-field class="example-full-width">
+          <input type="password" matInput placeholder="Password" formControlName="password">
+          <mat-error *ngIf="password.touched && password.hasError('required')">Password is required</mat-error>
+      </mat-form-field>
+        </mat-card-content>
+        <button mat-stroked-button class="btn-block"  [disabled]="!form.valid" type="submit">Login</button>
+        <button mat-stroked-button class="btn-block" [routerLink]="['../register']">Register</button>
+        <a mat-stroked-button class="btn-block" href="https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&client_id=744516398-0hqddj6prboe4602mfm4b7f46h95v3n0.apps.googleusercontent.com&prompt=consent&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Fauth%2Fgoogle&response_type=code&scope=email%20profile">GOOGLE</a>
+      </form>
+    </mat-card>
+  </div>
+</div>

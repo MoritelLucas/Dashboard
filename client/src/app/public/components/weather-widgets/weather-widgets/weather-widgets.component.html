@@ -1,0 +1,39 @@
+<div *ngFor="let widget of widgets; let index = index">
+    <mat-card *ngIf="widget.name === 'weather'" class="example-card" cdkDragBoundary=".example-boundary" cdkDrag>
+        <mat-card-header >
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>Weather</mat-card-title>
+            <mat-card-subtitle *ngIf="weather[index] != undefined" class="sub-text">City {{weather[index].city}}</mat-card-subtitle>
+          </mat-card-header>
+        <img  mat-card-image src="../../../assets/les-previsions-meteo-comment-ca-marche.jpeg" alt="Photo">
+          <mat-card-content *ngIf="weather[index] != undefined"  class="text-deco">
+              <strong>
+            <p>temperature: {{weather[index].temperature}}°C</p>
+            <p>weather_descriptions: {{weather[index].weather_descriptions}}</p>
+            <p>wind_speed: {{weather[index].wind_speed}}</p>
+            <p>wind_degree: {{weather[index].wind_degree}}</p>
+            <p>wind_dir:  {{weather[index].wind_dir}}</p>
+            <p>pressure:  {{weather[index].pressure}}</p>
+            <p>precip:  {{weather[index].precip}}</p>
+            <p>humidity:  {{weather[index].humidity}}</p>
+            <p>cloudcover:  {{weather[index].cloudcover}}</p>
+            <p>visibility:  {{weather[index].visibility}}</p>
+            <p>is_day:  {{weather[index].is_day}}</p>
+
+              </strong>
+          </mat-card-content>
+          <mat-card-actions>
+            <form [formGroup]="form[index]">
+                <mat-form-field class="example-form"  appearance="fill">
+                    <input matInput type="text" matInput placeholder="Please input a location"
+                        formControlName="location" required />
+                </mat-form-field>
+                <button class="mat-button" mat-button color="primary" (click)="sendWeather(index)"
+                [disabled]="!form[index].valid">Weather</button>                
+            </form>
+            <button mat-icon-button (click)="deleteWidget(index)">
+                <mat-icon> delete </mat-icon>
+            </button>
+          </mat-card-actions>
+    </mat-card>
+</div>

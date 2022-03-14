@@ -1,0 +1,31 @@
+<div *ngFor="let widget of widgets; let index = index">
+    <mat-card *ngIf="widget.name === 'location'" class="example-card" cdkDragBoundary=".example-boundary" cdkDrag>
+        <mat-card-header >
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>Location</mat-card-title>
+            <mat-card-subtitle *ngIf="location[index] != undefined" class="sub-text">City {{location[index].city}}</mat-card-subtitle>
+          </mat-card-header>
+        <img  mat-card-image src="../../../assets/Many-of-the-Top-100000-Android-Applications-are-Selling-Your-GPS-Location-Data-e1627558218326-1024x667.png" alt="Photo">
+          <mat-card-content *ngIf="location[index] != undefined"  class="text-deco">
+              <strong>
+            <p> Country: {{location[index].country}}</p>
+            <p>  Latitude: {{location[index].lat}}</p>
+            <p>  Longitude: {{location[index].lon}}</p>
+            <p>Timezone:  {{location[index].timezone_id}}</p>
+              </strong>
+          </mat-card-content>
+          <mat-card-actions>
+            <form [formGroup]="form[index]">
+                <mat-form-field class="example-form"  appearance="fill">
+                    <input matInput type="text" matInput placeholder="Please input a location"
+                        formControlName="location" required />
+                </mat-form-field>
+                <button class="mat-button" mat-button color="primary" (click)="sendLocation(index)"
+                [disabled]="!form[index].valid">Location</button>                
+            </form>
+            <button mat-icon-button (click)="deleteWidget(index)">
+                <mat-icon> delete </mat-icon>
+            </button>
+          </mat-card-actions>
+    </mat-card>
+</div>

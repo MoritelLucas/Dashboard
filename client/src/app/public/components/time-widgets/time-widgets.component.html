@@ -1,0 +1,29 @@
+<div *ngFor="let widget of widgets; let index = index">
+    <mat-card *ngIf="widget.name === 'time'" class="example-card" cdkDragBoundary=".example-boundary" cdkDrag>
+        <mat-card-header >
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>Time</mat-card-title>
+            <mat-card-subtitle *ngIf="time[index] != undefined" class="sub-text">City {{time[index].city}}</mat-card-subtitle>
+          </mat-card-header>
+        <img  mat-card-image src="../../../assets/everyday-myths-time.jpeg" alt="Photo">
+          <mat-card-content *ngIf="time[index] != undefined"  class="text-deco">
+              <strong>
+            <p>Time: {{time[index].hour}}</p>
+
+              </strong>
+          </mat-card-content>
+          <mat-card-actions>
+            <form [formGroup]="form[index]">
+                <mat-form-field class="example-form"  appearance="fill">
+                    <input matInput type="text" matInput placeholder="Please input a location"
+                        formControlName="location" required />
+                </mat-form-field>
+                <button class="mat-button" mat-button color="primary" (click)="sendTime(index)"
+                [disabled]="!form[index].valid">Time</button>                
+            </form>
+            <button mat-icon-button (click)="deleteWidget(index)">
+                <mat-icon> delete </mat-icon>
+            </button>
+          </mat-card-actions>
+    </mat-card>
+</div>

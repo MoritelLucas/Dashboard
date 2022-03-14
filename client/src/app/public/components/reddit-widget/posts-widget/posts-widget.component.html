@@ -1,0 +1,28 @@
+<div *ngFor="let widget of widgets; let index = index">
+    <mat-card *ngIf="widget.name === 'posts'" class="example-card" cdkDragBoundary=".example-boundary" cdkDrag>
+        <mat-card-header class="example-header-image" >
+            <mat-card-title>Reddit Posts</mat-card-title>
+            <mat-card-subtitle *ngIf="search[index] != undefined" class="sub-text">{{search[index].url}}</mat-card-subtitle>
+          </mat-card-header>
+          <img *ngIf="search[index] != undefined"  mat-card-image [src]="search[index].thumbnail" alt="Photo">
+          <mat-card-content *ngIf="search[index] != undefined"  class="text-deco">
+              <strong>
+                  <p>Title: {{search[index].title}}</p>
+                  <p>Ups: {{search[index].ups}}</p>
+              </strong>
+          </mat-card-content>
+          <mat-card-actions>
+            <form [formGroup]="form[index]">
+                <mat-form-field class="example-form"  appearance="fill">
+                    <input matInput type="text" matInput placeholder="Search"
+                        formControlName="channel" required />
+                </mat-form-field>
+                <button class="mat-button" mat-button color="primary" (click)="sendPostsRE(index)"
+                [disabled]="!form[index].valid">Posts</button>                
+            </form>
+            <button mat-icon-button (click)="deleteWidget(index)">
+                <mat-icon> delete </mat-icon>
+            </button>
+          </mat-card-actions>
+    </mat-card>
+</div>

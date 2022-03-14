@@ -1,0 +1,67 @@
+
+.example-container {
+    position: absolute;
+    top: 60px;
+    bottom:0px;
+    left: 0;
+    right: 0;
+  }
+  
+  .example-sidenav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    background:  #1D1D1D;
+  }
+  
+  .example-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #212121;
+    color:#27D5B0;
+  }
+  
+
+  .mat-tree-node:hover {
+    background-color:#1A1A1A !important;
+  }
+
+  .btn-tree {
+    background: #1A1A1A;
+    color:#27D5B0;
+  }
+
+  .btn-cl{
+    color:#27D5B0;
+  }
+
+  .text-color {
+    color:#27D5B0;
+  }
+
+  .mat-tab-group {
+    margin-bottom: 894px;
+    color:#27D5B0;    
+  }
+
+ 
+  .mat-tab-label {
+  color: #27D5B0  !important;
+}
+
+.exit-btn{
+  right:-1700px;
+  top:-5px
+}
+
+.card-imgage{
+  width: 28%;
+   max-width: 150px;  
+}
+
+.example-card {
+  max-width: 400px;
+}

@@ -1,0 +1,22 @@
+<div *ngFor="let widget of widgets; let index = index">
+    <mat-card *ngIf="widget.name === 'mySub'" class="example-card" cdkDragBoundary=".example-boundary" cdkDrag>
+        <mat-card-header class="example-header-image" >
+            <mat-card-title>Last post of my sub</mat-card-title>
+            <mat-card-subtitle *ngIf="search[index] != undefined" class="sub-text">http/reddit.com{{search[index].url}}</mat-card-subtitle>
+          </mat-card-header>
+          <img *ngIf="search[index] != undefined"  mat-card-image [src]="search[index].banner_img" alt="Photo">
+          <mat-card-content *ngIf="search[index] != undefined"  class="text-deco">
+              <strong>
+                  <p>Name: {{search[index].name}}</p>
+                  <p>subscribers: {{search[index].subscribers}}</p>
+                  <p>Description: {{search[index].public_description}}</p>
+                  <p>Lang: {{search[index].lang}}</p>
+              </strong>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-icon-button (click)="deleteWidget(index)">
+                <mat-icon> delete </mat-icon>
+            </button>
+          </mat-card-actions>
+    </mat-card>
+</div>

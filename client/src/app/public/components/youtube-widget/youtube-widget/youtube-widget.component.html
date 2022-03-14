@@ -1,0 +1,31 @@
+<div *ngFor="let widget of widgets; let index = index">
+    <mat-card *ngIf="widget.name === 'channel Info'" class="example-card" cdkDragBoundary=".example-boundary" cdkDrag>
+        <mat-card-header >
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>Channel info</mat-card-title>
+            <mat-card-subtitle *ngIf="channel[index] != undefined" class="sub-text">Youtuber {{channel[index].channelname}}</mat-card-subtitle>
+          </mat-card-header>
+        <img  mat-card-image src="../../../assets/youtube.png" alt="Photo">
+          <mat-card-content *ngIf="channel[index] != undefined"  class="text-deco">
+              <strong>
+                  <p>viewCount: {{channel[index].viewCount}} </p>
+                  <p>subscriberCount: {{channel[index].subscriberCount}} </p>
+                  <p>videoCount: {{channel[index].videoCount}} </p>
+
+              </strong>
+          </mat-card-content>
+          <mat-card-actions>
+            <form [formGroup]="form[index]">
+                <mat-form-field class="example-form"  appearance="fill">
+                    <input matInput type="text" matInput placeholder="Please input a location"
+                        formControlName="channel" required />
+                </mat-form-field>
+                <button class="mat-button" mat-button color="primary" (click)="sendchannelYT(index)"
+                [disabled]="!form[index].valid">channel</button>                
+            </form>
+            <button mat-icon-button (click)="deleteWidget(index)">
+                <mat-icon> delete </mat-icon>
+            </button>
+          </mat-card-actions>
+    </mat-card>
+</div>

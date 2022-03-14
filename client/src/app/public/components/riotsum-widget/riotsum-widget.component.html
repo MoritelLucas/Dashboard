@@ -1,0 +1,32 @@
+<div *ngFor="let widget of widgets; let index = index">
+    <mat-card *ngIf="widget.name === 'Summoner'" class="example-card" cdkDragBoundary=".example-boundary" cdkDrag>
+        <mat-card-header >
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>Summoner</mat-card-title>
+            <mat-card-subtitle *ngIf="summoner[index] != undefined" class="sub-text">Player {{summoner[index].name}}</mat-card-subtitle>
+          </mat-card-header>
+        <img  mat-card-image src="../../../assets/1280x720_LoL.jpeg" alt="Photo">
+          <mat-card-content *ngIf="summoner[index] != undefined"  class="text-deco">
+              <strong>
+            <p>summonerLevel: {{summoner[index].summonerLevel}}</p>
+            <p>rank: {{summoner[index].rank}}</p>
+            <p>wins: {{summoner[index].wins}}</p>
+            <p>losses: {{summoner[index].losses}}</p>
+            <p>leaguePoints:  {{summoner[index].leaguePoints}}</p>
+              </strong>
+          </mat-card-content>
+          <mat-card-actions>
+            <form [formGroup]="form[index]">
+                <mat-form-field class="example-form"  appearance="fill">
+                    <input matInput type="text" matInput placeholder="Please input a location"
+                        formControlName="location" required />
+                </mat-form-field>
+                <button class="mat-button" mat-button color="primary" (click)="sendSummoner(index)"
+                [disabled]="!form[index].valid">Search</button>                
+            </form>
+            <button mat-icon-button (click)="deleteWidget(index)">
+                <mat-icon> delete </mat-icon>
+            </button>
+          </mat-card-actions>
+    </mat-card>
+</div>
